@@ -1,12 +1,10 @@
-export default class SLider {
-    constructor(page, btns, timeBlock) {
-        this.page = document.querySelector(page);
-        this.btns = document.querySelectorAll(btns);
-        this.slides = this.page.children;
-        this.slideIndex = 1;
+import Slider from './slider';
 
+
+export default class MainSlider extends Slider {
+    constructor(btns) {
+        super(btns);
     }
-
 
     showSlides(n) {
         if (n < 1) {
@@ -31,7 +29,7 @@ export default class SLider {
                     this.hanson.style.opacity = 1;
                     this.hanson.classList.add('animated', 'fadeInUp');
                 }, 3000);
-                
+
             } else {
                 this.hanson.style.opacity = 0;
                 this.hanson.classList.remove('fadeInUp');
