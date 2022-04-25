@@ -1,6 +1,9 @@
 import MainSlider from "./modules/slider/slider-main";
 import VideoPlayer from './modules/playVideo';
 import SliderMini from './modules/slider/slider-mini';
+import Difference from './modules/difference';
+import Forms from './modules/forms';
+import Mask from './modules/mask';
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({
@@ -37,7 +40,7 @@ window.addEventListener('DOMContentLoaded', () => {
         prev: '.feed__slider .slick-prev',
         container: '.feed__slider',
         activeClass: 'feed__item-active',
-        
+
 
     });
 
@@ -47,6 +50,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const player = new VideoPlayer('.showup .play', '.overlay');
     player.init();
+
+    new Difference('.officerold', '.officernew', '.officer__card-item').init();
+    new Forms('.join__evolution form').init();
+    new Forms('.schedule__form form').init();
+    new Mask('input[name="phone"]').init();
+
+
+
 
 
 

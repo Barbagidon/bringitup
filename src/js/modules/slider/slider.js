@@ -18,15 +18,22 @@ export default class Slider {
         this.autoplay = autoplay;
         this.slideIndex = 1;
 
-        this.x = () => {
-            this.container.children.forEach(item => {
-                if (item.tagName != 'BUTTON') {
-                    this.slides.push(item);
-                }
-            });
-        };
-        this.x();
-        
+        try {
+            this.x = () => {
+                this.container.children.forEach(item => {
+                    if (item.tagName != 'BUTTON') {
+                        this.slides.push(item);
+                    }
+                });
+            };
+            this.x();
+
+        } catch (e) {
+
+        }
+
+
+
     }
 
 

@@ -2938,6 +2938,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider/slider-main */ "./src/js/modules/slider/slider-main.js");
 /* harmony import */ var _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/playVideo */ "./src/js/modules/playVideo.js");
 /* harmony import */ var _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/slider/slider-mini */ "./src/js/modules/slider/slider-mini.js");
+/* harmony import */ var _modules_difference__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/difference */ "./src/js/modules/difference.js");
+/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
+
+
 
 
 
@@ -2973,7 +2977,127 @@ window.addEventListener('DOMContentLoaded', function () {
   feedSlider.init();
   var player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"]('.showup .play', '.overlay');
   player.init();
+  new _modules_difference__WEBPACK_IMPORTED_MODULE_3__["default"]('.officerold', '.officernew', '.officer__card-item').init();
+  new _modules_forms__WEBPACK_IMPORTED_MODULE_4__["default"]('.join__evolution form', 'input').init();
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/difference.js":
+/*!**************************************!*\
+  !*** ./src/js/modules/difference.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Difference; });
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Difference =
+/*#__PURE__*/
+function () {
+  function Difference(oldOfficer, newOfficer, items) {
+    _classCallCheck(this, Difference);
+
+    this.oldOfficer = document.querySelector(oldOfficer);
+    this.newOfficer = document.querySelector(newOfficer);
+    this.newItems = this.newOfficer.querySelectorAll(items);
+    this.oldItems = this.oldOfficer.querySelectorAll(items);
+    this.oldCounter = 0;
+    this.newCounter = 0;
+    this.items = items;
+  }
+
+  _createClass(Difference, [{
+    key: "hideContent",
+    value: function hideContent(arr) {
+      arr.forEach(function (item, i, arr) {
+        if (item != arr[arr.length - 1]) {
+          item.style.display = 'none';
+        }
+      });
+    }
+  }, {
+    key: "bindTriggers",
+    value: function bindTriggers(container, counter, items) {
+      container.querySelector('.plus').addEventListener('click', function () {
+        if (counter !== items.length - 2) {
+          items[counter].style.display = 'flex';
+          counter++;
+        } else {
+          items[items.length - 1].style.display = 'none';
+          items[counter].style.display = 'flex';
+        }
+      });
+    }
+  }, {
+    key: "init",
+    value: function init() {
+      this.hideContent(this.newItems);
+      this.hideContent(this.oldItems);
+      this.bindTriggers(this.oldOfficer, this.oldCounter, this.oldItems);
+      this.bindTriggers(this.newOfficer, this.newCounter, this.newItems);
+    }
+  }]);
+
+  return Difference;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/js/modules/forms.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/forms.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Forms; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Forms =
+/*#__PURE__*/
+function () {
+  function Forms(form, inputs) {
+    _classCallCheck(this, Forms);
+
+    this.form = document.querySelector(form);
+    this.inputs = this.form.querySelectorAll(inputs);
+  }
+
+  _createClass(Forms, [{
+    key: "postData",
+    value: function postData() {}
+  }, {
+    key: "init",
+    value: function init() {
+      console.log(this.form);
+      console.log(this.inputs);
+    }
+  }]);
+
+  return Forms;
+}();
+
+
 
 /***/ }),
 
@@ -3356,7 +3480,7 @@ function (_Slider) {
         });
         this.container.addEventListener('mouseout', function () {
           _this5.loops();
-        }); // setInterval(() => this.next.click(), 4000);
+        });
       }
     }
   }]);

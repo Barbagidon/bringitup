@@ -19,7 +19,14 @@ export default class MainSlider extends Slider {
             slide.style.display = 'none';
         });
 
-        this.slides[this.slideIndex - 1].style.display = 'block';
+        try {
+            this.slides[this.slideIndex - 1].style.display = 'block';
+
+        } catch (e) {
+
+        }
+
+       
 
 
 

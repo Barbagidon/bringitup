@@ -11,7 +11,6 @@ export default class SliderMini extends Slider {
 
     bindTriggers() {
 
-
         this.prev.addEventListener('click', () => {
             this.item = this.slides.splice(this.slides.length - 1, 1)[0];
             this.slides.unshift(this.item);
@@ -76,44 +75,43 @@ export default class SliderMini extends Slider {
 
 
     init() {
-
-        this.container.style.cssText = `
-        display: flex;
-        flex-wrap: wrap;
-        overflow: hidden;
-        align-items: start;
+        try {
+            try {
+                this.container.style.cssText = `
+                    display: flex;
+                    flex-wrap: wrap;
+                    overflow: hidden;
+                    align-items: start;
         
         `;
 
+            } catch (e) {
+
+            }
 
 
-        this.bindTriggers();
-        this.nextSlide();
-        this.decorizeSlides();
 
-        if (this.autoplay) {
-            this.timer = '';
-            this.loops();
 
-            
-            this.container.addEventListener('mouseover', () => {
-                console.log(this.timer);
-                clearInterval(this.timer);
-            });
+            this.bindTriggers();
+            this.nextSlide();
+            this.decorizeSlides();
 
-            this.container.addEventListener('mouseout', () => {
+            if (this.autoplay) {
+                this.timer = '';
                 this.loops();
-            });
 
 
+                this.container.addEventListener('mouseover', () => {
+                    console.log(this.timer);
+                    clearInterval(this.timer);
+                });
 
+                this.container.addEventListener('mouseout', () => {
+                    this.loops();
+                });
 
-
-
-
-
-            // setInterval(() => this.next.click(), 4000);
-
+            }
+        } catch (e) {
 
         }
 
