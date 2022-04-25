@@ -5,12 +5,41 @@ import Difference from './modules/difference';
 import Forms from './modules/forms';
 import Mask from './modules/mask';
 
+
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({
         btns: '.next',
         container: '.page'
     });
     slider.render();
+
+
+    const modulePageSlider = new MainSlider({
+        container: '.moduleapp',
+        mainPrev: '.module__info .prev',
+        btns: '.next'
+    });
+
+    modulePageSlider.render();
+
+
+
+  
+
+
+    // const modulePageMiniSlider = new SliderMini({
+    //     next: '.module__info-controls .next',
+    //     prev: '.module__info-controls .prev',
+    //     container: '.moduleapp',
+
+    // });
+
+    // modulePageMiniSlider.init();
+
+
+
+
+
 
     const showupSlider = new SliderMini({
         next: '.showup__next',

@@ -2,8 +2,8 @@ import Slider from './slider';
 
 
 export default class MainSlider extends Slider {
-    constructor(btns) {
-        super(btns);
+    constructor(btns, mainNext, mainPrev) {
+        super(btns, mainNext, mainPrev);
     }
 
     showSlides(n) {
@@ -26,15 +26,22 @@ export default class MainSlider extends Slider {
 
         }
 
-       
+
 
 
 
         try {
             if (this.slideIndex === 3) {
+
                 setTimeout(() => {
-                    this.hanson.style.opacity = 1;
-                    this.hanson.classList.add('animated', 'fadeInUp');
+
+                    try {
+                        this.hanson.style.opacity = 1;
+                        this.hanson.classList.add('animated', 'fadeInUp');
+                    } catch (e) {
+
+                    }
+
                 }, 3000);
 
             } else {
@@ -53,31 +60,35 @@ export default class MainSlider extends Slider {
         this.showSlides(this.slideIndex += n);
     }
 
-    render() {
-        try {
-            this.hanson = document.querySelector('.hanson');
 
-        } catch (e) {
-
-        }
-        this.btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.plusSlides(1);
+    nextPrevslide(btn, i) {
+        btn.forEach(item => {
+            item.addEventListener('click', () => {
+                this.plusSlides(i);
             });
+            if (this.btns) {
+                item.parentNode.previousElementSibling.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.slideIndex = 1;
+                    this.showSlides(this.slideIndex);
+                });
+            }
+        });
+    }
 
-
-            btn.parentNode.previousElementSibling.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.slideIndex = 1;
+    render() {
+        if (this.container) {
+            this.hanson = document.querySelector('.hanson');
+            if (this.mainPrev) {
+                this.nextPrevslide(this.mainPrev, -1);
+                this.nextPrevslide(this.btns, 1);
                 this.showSlides(this.slideIndex);
 
-
-            });
-
-
-        });
-
-        this.showSlides(this.slideIndex);
+            } else {
+                this.nextPrevslide(this.btns, 1);
+            }
+            this.showSlides(this.slideIndex);
+        }
 
     }
 }
