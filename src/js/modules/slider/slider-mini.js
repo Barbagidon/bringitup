@@ -126,8 +126,6 @@ export default class SliderMini extends Slider {
                     this.timerGoClear(this.next);
                     this.timerGoClear(this.prev);
                     
-
-
                 }
 
             }
