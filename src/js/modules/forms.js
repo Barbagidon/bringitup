@@ -59,7 +59,7 @@ export default class Forms {
             const data = new FormData(this.form);
             this.postFetch('assets/question.php', data)
                 .then(res => {
-                    console.log(res);
+                    
 
                     statusMessage.textContent = this.message.success;
 

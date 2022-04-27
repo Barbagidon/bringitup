@@ -29,7 +29,7 @@ export default class SliderMini extends Slider {
             this.container.appendChild(this.slides[0]);
             this.item = this.slides.splice(0, 1)[0];
             this.slides.splice(this.slides.length, 1, this.item);
-            console.log(this.slides);
+
           
 
             this.decorizeSlides();

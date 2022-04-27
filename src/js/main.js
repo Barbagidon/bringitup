@@ -5,6 +5,7 @@ import Difference from './modules/difference';
 import Forms from './modules/forms';
 import Mask from './modules/mask';
 import Showinfo from './modules/showinfo';
+import Download from './modules/download';
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -69,6 +70,7 @@ window.addEventListener('DOMContentLoaded', () => {
     new Forms('.schedule__form form').init();
     new Mask('input[name="phone"]').init();
     new Showinfo('.module__info-show .plus').init();
+    new Download('.download').init();
 
 
 
